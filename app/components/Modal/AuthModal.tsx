@@ -1,7 +1,9 @@
 // components/Modal/AuthModal.tsx
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import styles from './01Modal.module.css';
+import piyo01 from '../../public/piyo01.png';
 
 interface AuthModalProps {
   isSignUpModalOpen: boolean;
@@ -33,13 +35,14 @@ const AuthModal: React.FC<AuthModalProps> = ({
   return (
     <div className={styles.modalBackground}>
       <div className={styles.modalContent}>
+       
         {/* ログインモードの内容 */}
         {isLoginMode ? (
-          <>
-            <h2 className="text-xl font-bold mb-4">Log IN</h2>
+          <div >
+            <h2 className={styles.modaltitle}>ろぐいん</h2>
             <form onSubmit={handleAuthSubmit}>
-              <div className="mb-4">
-                <label className="block mb-1">Email:</label>
+              <div className="mb-4 mt-4">
+                <label  className={styles.modalsubtitle}>Email:</label>
                 <input
                   type="email"
                   value={email}
@@ -49,7 +52,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                 />
               </div>
               <div className="mb-4">
-                <label className="block mb-1">Password:</label>
+                <label className={styles.modalsubtitle}>Password:</label>
                 <input
                   type="password"
                   value={password}
@@ -59,17 +62,17 @@ const AuthModal: React.FC<AuthModalProps> = ({
                 />
               </div>
               <button type="submit" className={styles.modalButton}>
-                Log IN
+                ろぐいんする
               </button>
             </form>
-          </>
+          </div>
         ) : (
           // サインアップモードの内容
           <>
-            <h2 className="text-xl font-bold mb-4">Sign UP</h2>
+            <h2 className={styles.modaltitle}>さいんあっぷ</h2>
             <form onSubmit={handleAuthSubmit}>
-              <div className="mb-4">
-                <label className="block mb-1">Email:</label>
+              <div className="mb-4 mt-4">
+                <label className={styles.modalsubtitle}>Email:</label>
                 <input
                   type="email"
                   value={email}
@@ -79,7 +82,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                 />
               </div>
               <div className="mb-4">
-                <label className="block mb-1">Password:</label>
+                <label className={styles.modalsubtitle}>Password:</label>
                 <input
                   type="password"
                   value={password}
@@ -89,7 +92,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                 />
               </div>
               <button type="submit" className={styles.modalButton}>
-                Sign UP
+                さくせい
               </button>
             </form>
           </>
@@ -101,23 +104,23 @@ const AuthModal: React.FC<AuthModalProps> = ({
         {/* 新規登録の誘導テキスト */}
         <div className="text-center mb-4">
           {isLoginMode ? (
-            <p>
-              アカウントをお持ちでないですか？{' '}
+            <p className={styles.modaldesc}>
+              あかうんとをお持ちでないですか？{' '}
               <span
                 onClick={() => setIsLoginMode(false)}
                 className="text-blue-500 cursor-pointer"
               >
-                新規登録はこちら
+                作成はこちら
               </span>
             </p>
           ) : (
-            <p>
-              すでにアカウントをお持ちですか？{' '}
+            <p className={styles.modaldesc}>
+              すでにあかうんとをお持ちですか？{' '}
               <span
                 onClick={() => setIsLoginMode(true)}
                 className="text-blue-500 cursor-pointer"
               >
-                ログインはこちら
+                ろぐいんはこちら
               </span>
             </p>
           )}
@@ -131,7 +134,9 @@ const AuthModal: React.FC<AuthModalProps> = ({
         >
           閉じる
         </button>
+       <Image src={piyo01} alt="Piyo" width={150} height={150} className={styles['overlay-image']} />
       </div>
+
     </div>
   );
 };

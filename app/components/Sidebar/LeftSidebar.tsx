@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
 import LeftsideverINDEX from "./LeftSidever_index"; // 左サイドバーのボタンの部分
 //type
 import { Entry,EntryAC, EntrySports } from '../type';
@@ -20,6 +21,7 @@ import ProfileModal from '../Modal/ProfileModal';
 import ImageInputModal from "../Modal/ImageInputModal";
 
 const Leftsidever: React.FC = () => {
+  const router = useRouter();
   const [entries, setEntries] = useState<Entry[]>([]);
   const [entryAC, setEntryAC] = useState<EntryAC[]>([]);
   const [sportsEntries, setSportsEntries] = useState<EntrySports[]>([]);
@@ -56,11 +58,12 @@ const Leftsidever: React.FC = () => {
       if (isLoginMode) {
         // ログイン処理
         await signInWithEmailAndPassword(auth, email, password);
-        alert('ログイン成功');
+        setIsSignUpModalOpen(false); // ログイン成功時にモーダルを即座に閉じる
+        setEmail(''); // フォームをクリア
+        setPassword(''); // フォームをクリア
       } else {
         // サインアップ処理
         await createUserWithEmailAndPassword(auth, email, password);
-        alert('アカウント作成成功');
         setIsSignUpModalOpen(false);  // サインアップモーダルを閉じる
         setIsNicknameModalOpen(true); // ニックネーム設定モーダルを開く
       }
@@ -82,16 +85,24 @@ const Leftsidever: React.FC = () => {
 const handleLogout = async () => {
   try {
     await signOut(auth); // Firebase Auth でログアウト
-    console.log("ログアウトしました");
+    setIsLogoutModalOpen(false); // ログアウト成功時にモーダルを即座に閉じる
     setIsSignupSuccess(false); // サインアップ成功フラグをリセット
     setIsNicknameModalOpen(false); // ニックネームモーダルを閉じる
-    // ログイン・サインアップモーダルを開く、または必要に応じてリダイレクト
-    // history.push('/login'); // React Routerを使用している場合、ログインページへリダイレクト
+    router.push('/'); // トップページにリダイレクト
   } catch (error) {
     console.error("ログアウト時にエラーが発生しました:", error);
     alert("ログアウト時にエラーが発生しました");
   }
 };
+
+  // ログイン状態の監視
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsLoggedIn(!!user);
+    });
+    
+    return () => unsubscribe();
+  }, []);
 
   const Mynickname = entryAC[entryAC.length - 1]?.nickname || 'user';
 

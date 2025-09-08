@@ -42,12 +42,12 @@ const Header2index: React.FC<Header2indexProps> = ({
             {isLoggedIn ? (
                 <button onClick={() => setIsLogoutModalOpen(true)}  className={styles.HeadButton}>
                     <UserCircle size={40} color="#4f2f2f" weight="duotone" />
-                    <div className={styles.text}>ろぐあうと</div>
+                    <div className={styles.text}>ログアウト</div>
                 </button>
             ) : (
                 <button onClick={() => setIsSignUpModalOpen(true)}   className={styles.HeadButton}>
                     <UserCircle size={40} color="#4f2f2f" weight="duotone"  className={styles.icons}/>
-                    <div className={styles.text}>ろぐいん</div>
+                    <div className={styles.text}>ログイン</div>
                 </button>
             )}
 

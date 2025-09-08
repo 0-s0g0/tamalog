@@ -10,33 +10,98 @@
   }
   
   /* モーダル本体 */
-  .modalContent {
-    background-color: white;
+.modalContent {
+    border-color: #f8cc49;
+    border-width: 10px;
+    background-image: repeating-linear-gradient(45deg, #ffffe0, #ffffe0, 10px, #FFF 10px, #FFF 20px);
+    background-position: 0 0; /* グラデーションのみなので位置はこれだけでOK */
+    background-repeat: repeat; /* グラデーションは繰り返す */
+    background-size: auto; /* グラデーションのサイズ（通常は自動） */
+    border-style: solid;
     padding: 2rem;
-    border-radius: 0.5rem;
+    border-radius: 50px;
     width: 60%;
     max-width: 30rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* 子要素の絶対配置のために必要 */
+    overflow: hidden; /* はみ出した画像を隠す */
+}
+
+@media screen and (max-width: 767px) {
+    .modalContent {
+        width: 90%;
+    }
+}
+
+.overlay-image {
+    position: absolute; /* modalContentに対して絶対配置 */
+    bottom: 0; /* 右下に配置 */
+    right: 0;  /* 右下に配置 */
+    width: 150px; /* 画像のサイズ */
+    height: auto; /* アスペクト比を維持 */
+    filter: opacity(0.4); /* 例: 40%の不透明度（60%薄くする） */
+    transform: rotate(15deg);
+    transform-origin: bottom right; /* 右下を基準に回転させる場合はこれ */
+    z-index: 1; /* 画像を表示するが、テキストより低い値 */
+    pointer-events: none; /* 画像をクリック不可にする */
+}
+
+  .modaltitle{
+    color: brown;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family:"KraftMincho";
+    text-align: center;
+    margin-bottom: 1rem;
   }
   
+  .modalsubtitle{
+    color: brown;
+    font-size: 1rem;
+    font-weight: bold;
+
+    font-family:"KraftMincho";
+  }
+
+    .modaldesc{
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family:"KraftMincho";
+    position: relative;
+    z-index: 10; /* テキストを画像より前面に表示 */
+  }
+  /* モーダルのボタンコンテナ */
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
   /* モーダルのボタン */
   .modalButton {
-    background-color: #3182ce;
-    color: white;
+    background-color:#f8cc49;
+    color: brown;
     padding: 0.5rem 1rem;
     border: none;
-    border-radius: 0.25rem;
+    border-radius: 20px;
     cursor: pointer;
+    font-family:"KraftMincho";
+    display: block;
+    margin: 0 auto;
   }
   
   .modalButtonclose {
-    background-color: gray;
-    margin-left: 0.5rem;
-    color: white;
+    background-color: lightyellow;
+    color: black;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
+    font-family:"KraftMincho";
+    display: block;
+    margin: 1rem auto 0 auto;
   }
 
   .modalButtonlogout {
