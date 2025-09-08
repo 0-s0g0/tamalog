@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
     height: 80vh;
-    width: 80vw;
+    width: 90vw;
     margin: auto;
     margin-top: 8vh;
 
@@ -23,6 +23,33 @@
     text-align: center;
     font-size: 1.3rem;
     color: brown;
+}
+.title_text2{
+    margin-top: 30px;
+    font-family: 'KraftMincho';
+    text-align: center;
+    font-size: 1.3rem;
+    color: lightyellow; 
+    border-color: orange;
+    background-color: orange;
+    border-width: 3px; /* Add a width */
+    border-style: solid; /* Add a style */
+    border-radius: 50px;
+    padding: 10px 20px;
+    width: 200px;
+}
+
+.title_text1{
+    font-family: 'KraftMincho';
+    text-align: center;
+    font-size: 1.3rem;
+    color: brown;
+    border-color: brown;
+    border-width: 3px; /* Add a width */
+    border-style: solid; /* Add a style */
+    border-radius: 50px;
+    padding: 10px 20px;
+    width: 200px;
 }
 
 .logo{

@@ -27,10 +27,11 @@ export default function Home() {
         <div className={styles.title_text}>けんこうCheers!</div>
         <Image src={logo} alt="Piyo image" className={styles.logo}></Image>
         <Link href="/mobile-page" passHref>
-        <div className={styles.title_text}>モバイルページへ</div>
+        <div className={styles.title_text1}>Mobile
+        </div>
         </Link>
         <Link href="/components/PC" passHref>
-        <div className={styles.title_text}>PCページへ</div>
+        <div className={styles.title_text2}>PC</div>
         </Link>
         
       </div>
