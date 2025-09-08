@@ -84,6 +84,7 @@ export default function Home() {
       if (auth.currentUser) {
         await getEntryACNFromFirestore(setEntryAC);
         await getCountEntriesFromFirestore(setEntries);
+        await getEntrySportsFromFirestore(setSportsEntries);
       }
     };
     fetchData();
